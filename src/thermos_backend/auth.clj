@@ -165,16 +165,18 @@ If it does exist, you don't have privileges to see it.")
                   create login forgot]
     (cond
       create
-      (if (users/create-user! username username password)
-        (handle-login username password "/")
-        (response/redirect "/login?flash=exists"))
+      (response/redirect "/login?flash=signup-disabled")
+      ;;(if (users/create-user! username username password)
+      ;;  (handle-login username password "/")
+      ;;  (response/redirect "/login?flash=exists"))
 
       login
       (handle-login username password redirect-to)
 
       forgot
-      (do (users/emit-reset-token! username)
-          (response/redirect "/login?flash=check-mail"))))
+      (response/redirect "/login?flash=forgot-disabled")))
+      ;;(do (users/emit-reset-token! username)
+      ;;    (response/redirect "/login?flash=check-mail"))))
 
   (GET "/logout" []
     (handle-logout)))

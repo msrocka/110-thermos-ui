@@ -8,6 +8,8 @@
             [thermos-backend.db :as db]
             [thermos-backend.config :refer [config]]
             [clojure.string :as string]
+            [clojure.edn :as edn]
+            [clojure.java.io :as io]
             [jdbc.core :as jdbc]
             [honeysql.core :as sql]
             [thermos-backend.changelog :refer [changelog]]
@@ -50,12 +52,22 @@
     :else b))
 
 (defn users []
+  "Return all users"
   (-> (h/select :*)
       (h/from :users)
       (h/order-by :id)
       (db/fetch!)))
 
+(defn user-exists? [user-id]
+  "Return true if the user exists"
+  (boolean
+    (-> (h/select :id)
+        (h/from :users)
+        (h/where [:= :id (string/lower-case user-id)])
+        (db/fetch-one!))))
+
 (defn set-user-auth! [user-id auth]
+  "Updates the authentication level of a user"
   (-> (h/update :users)
       (h/sset {:auth (as-user-auth auth)})
       (h/where [:= :id user-id])
@@ -343,3 +355,16 @@
       (h/where [:= user-id :users.id])
       (db/fetch-one!)
       (:count)))
+
+(defn load-predefined-users!
+  "Load predefined users from resources/users.edn and create them if
+  they don't exist. This function is called once when the application starts."
+  []
+  (let [users-resource (io/resource "users.edn")
+        users (edn/read-string (slurp users-resource))]
+    (doseq [user users]
+      (let [user-id (:id user)
+            should-create? (not (user-exists? user-id))]
+        (when should-create?
+          (create-user! user-id user-id (:password user))
+          (set-user-auth! user-id (:auth user)))))))

@@ -3,6 +3,7 @@
 
 (ns thermos-backend.core
   (:require [org.httpkit.server :as httpkit]
+            [thermos-backend.db.users :as users]
             [thermos-backend.hacks]
             [thermos-backend.config :refer [config]]
             [thermos-backend.handler :as handler]
@@ -13,7 +14,8 @@
             [mount.core :as mount])
   (:gen-class))
 
-(defstate server
+(defstate
+  server
   :start
   (let [server-config
         {:max-body (* 1024 1024 (config :web-server-max-body))
@@ -25,6 +27,10 @@
     (when enabled (httpkit/run-server handler/all server-config)))
   :stop
   (and server (server :timeout 100)))
+
+(defstate
+  init-users
+  :start (users/load-predefined-users!))
 
 (defn -main [& args]
   (log/info "Starting THERMOS application")
