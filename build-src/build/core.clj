@@ -5,23 +5,35 @@
   (:require [clojure.tools.cli :refer [parse-opts]]))
 
 (def opts-for
-  {:dev [["-e" "--emacs" "Use cider middleware for emacs"]
-         ["-d" "--debug" "Produce part-mangled js to help debug what's wrong when using advanced optimisations"]]
-   :pkg [["-d" "--debug" "Produce part-mangled js to help debug what's wrong when using advanced optimisations"]]}
-  )
+  (let [debug ["-d" "--debug" "Produce part-mangled js to help debug what's wrong when using advanced optimisations"]]
+    {:dev  [["-e" "--emacs" "Use cider middleware for emacs"]
+            debug]
+     :pkg  [debug]
+     :cljs [debug]}))
+
+(defn- command-of [args]
+  (cond
+    (empty? args) :dev,
+    (and
+      (> (count args) 1)
+      (= (first args) "-m"))
+    (command-of (rest (rest args))),
+    :else (keyword (first args))))
+
 
 (defn -main [& args]
-  (let [args (or args ["dev"])
-        [com & args] args
-        com (keyword com)
-        opts (parse-opts args (opts-for com))]
+  (let [command (command-of args)
+        opts (parse-opts args (opts-for command))
+        debug-optimizations (get-in opts [:options :debug])]
 
-    (case com
+    (case command
       :pkg (do (require 'build.pkg)
                ((resolve 'build.pkg/build-jar)
-                {:debug-optimizations
-                 (:debug (:options opts))}
-                ))
+                {:debug-optimizations debug-optimizations}))
+
+      :cljs (do (require 'build.cljs)
+                ((resolve 'build.cljs/build-cljs)
+                 {:debug-optimizations debug-optimizations}))
 
       :cli-pkg (do (require 'build.pkg)
                    ((resolve 'build.pkg/build-cli-tool)))
@@ -34,7 +46,7 @@
 
       :noder-pkg (do (require 'build.pkg)
                      ((resolve 'build.pkg/build-noder)))
-      
+
       :dev (do
              (require 'build.dev)
              ((resolve 'build.dev/start-dev)
@@ -42,10 +54,10 @@
                (if (:emacs (:options opts))
                  'build.emacs/emacs-middleware
                  'nrepl.server/default-handler)
-               
+
                :debug-optimizations
                (:debug (:options opts))}))
-      
+
       (do (println "Known tasks are pkg and dev")
           (println "e.g. clj -Aclient:server:dev dev")))))
 

@@ -96,7 +96,7 @@
   (println (on-cyan (white "create jar")))
   (uberjar/create-uberjar
    "target/thermos.jar"
-   :classpath (classpath/make-classpath {:aliases [:server :jar]})
+   :classpath (classpath/make-classpath {:aliases [:server :jar :client]})
    
    :manifest {:Main-Class 'thermos-backend.core
               :Specification-Title "Java Advanced Imaging Image I/O Tools"

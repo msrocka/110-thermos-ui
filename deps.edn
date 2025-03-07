@@ -27,6 +27,7 @@
    :extra-deps
    {ring/ring-devel               {:mvn/version "1.7.1"},
     org.clojure/tools.cli         {:mvn/version "0.4.2"},
+    org.clojure/tools.build       {:mvn/version "0.9.2"},
 
     figwheel-sidecar/figwheel-sidecar
     {:mvn/version "0.5.19",

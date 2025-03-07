@@ -7,15 +7,12 @@
 
 (ns build.dev
   (:require [mount.core :as mount]
-            [clojure.tools.namespace :as tns]
             [clojure.java.io :as io]
             [nrepl.server :as nrepl]
-            [figwheel-sidecar.repl-api
-              :as repl-api :refer [cljs-repl]]
+            [figwheel-sidecar.repl-api :as repl-api]
             [less4clj.api :as less]
             [clojure.edn :as edn]
-            [badigeon.clean :as clean]
-            ))
+            [badigeon.clean :as clean]))
 
 ;; start an nrepl to connect to
 
@@ -72,7 +69,6 @@
     :auto true}))
 
 (in-ns 'user)
-
 (require '[clojure.tools.namespace.repl :as tns])
 
 ;; this below is required because otherwise tools.namespace scans the
