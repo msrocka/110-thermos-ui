@@ -15,10 +15,11 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
-    networks:
-      thermos-network:
-        aliases:
-          - localhost  # respond to 'localhost' within the network
+    network_mode: host
+    #networks:
+    #  thermos-network:
+    #    aliases:
+    #      - localhost  # respond to 'localhost' within the network
 
   thermos-app:
     image: thermos-app:latest
@@ -28,12 +29,13 @@ services:
         condition: service_healthy
     ports:
       - "3000:8080"
-    networks:
-      - thermos-network
+    network_mode: host
+    #networks:
+    #  - thermos-network
 
-networks:
-  thermos-network:
-    driver: bridge
+#networks:
+#  thermos-network:
+#    driver: bridge
 
 volumes:
   db-data:
