@@ -1,0 +1,39 @@
+services:
+  thermos-db:
+    image: thermos-db:latest
+    container_name: thermos-db
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: therm0s
+      POSTGRES_DB: thermos
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      thermos-network:
+        aliases:
+          - localhost  # respond to 'localhost' within the network
+
+  thermos-app:
+    image: thermos-app:latest
+    container_name: thermos-app
+    depends_on:
+      thermos-db:
+        condition: service_healthy
+    ports:
+      - "3000:8080"
+    networks:
+      - thermos-network
+
+networks:
+  thermos-network:
+    driver: bridge
+
+volumes:
+  db-data:
