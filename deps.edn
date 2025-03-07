@@ -123,7 +123,7 @@
     ring/ring-json                          {:mvn/version "0.4.0"},
     aysylu/loom                             {:mvn/version "1.0.1"},
     org.jgrapht/jgrapht-core                {:mvn/version "1.5.2"}
-    org.postgresql/postgresql               {:mvn/version "9.4.1212.jre7"},
+    org.postgresql/postgresql               {:mvn/version "42.7.5"},
     thermos/importer
     {:git/url "https://github.com/cse-bristol/110-thermos-importer.git",
      :sha     "d44bc1a19f69f114342aea18350d46228e5ea0e3"},
@@ -138,7 +138,7 @@
     org.clojure/java.jdbc                   {:mvn/version "0.7.5"},
     resauce/resauce                         {:mvn/version "0.1.0"},
     org.apache.lucene/lucene-highlighter    {:mvn/version "7.5.0"},
-    hikari-cp/hikari-cp                     {:mvn/version "1.2.4"},
+    hikari-cp/hikari-cp                     {:mvn/version "3.2.0"},
     javax.servlet/servlet-api               {:mvn/version "2.5", :scope "test"},
     mount/mount                             {:mvn/version "0.1.15"},
     bidi/bidi                               {:mvn/version "2.1.6"},

@@ -10,7 +10,7 @@ Use the `db.Dockerfile` to build the database image like this:
 ```bash
 
 # build the image
-docker build -t thermos-postgis .  -f db.Dockerfile
+docker build -t thermos-postgis . -f db.Dockerfile
 
 # run it
 docker run --rm -d -p 5432:5432 --name thermos-postgis thermos-postgis
