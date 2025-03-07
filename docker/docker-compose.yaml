@@ -3,7 +3,7 @@ services:
     image: thermos-db:latest
     container_name: thermos-db
     volumes:
-      - db-data:/var/lib/postgresql/data
+      - ./db-data:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: therm0s
@@ -29,6 +29,3 @@ services:
 networks:
   thermos-network:
     driver: bridge
-
-volumes:
-  db-data:

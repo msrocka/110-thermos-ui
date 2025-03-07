@@ -2,7 +2,9 @@
 ;; Licensed under the Reciprocal Public License v1.5. See LICENSE for licensing details.
 
 (ns build.core
-  (:require [clojure.tools.cli :refer [parse-opts]]))
+  (:require [clojure.java.io :as io]
+            [clojure.tools.cli :refer [parse-opts]]))
+
 
 (def opts-for
   (let [debug ["-d" "--debug" "Produce part-mangled js to help debug what's wrong when using advanced optimisations"]]
@@ -10,6 +12,7 @@
             debug]
      :pkg  [debug]
      :cljs [debug]}))
+
 
 (defn- deconstruct-args [args]
   "Deconstructs the args into a command and the rest of the args.
@@ -23,10 +26,25 @@
     :else [(keyword (first args)), (rest args)]))
 
 
+(defn- ensure-user-config
+  "Ensures that ./resources/users.edn exists by copying from users.default.edn
+   if needed"
+  []
+  (let [users-edn (io/file "resources/users.edn")
+        users-default-edn (io/file "resources/users.default.edn")]
+    (when-not (.exists users-edn)
+      (println "users.edn configuration not found."
+               "Creating from default template...")
+        (io/copy users-default-edn users-edn)
+        (println "Created users.edn from template."))))
+
+
 (defn -main [& args]
   (let [[command rest-args] (deconstruct-args args)
         opts (parse-opts rest-args (opts-for command))
         debug-optimizations (get-in opts [:options :debug])]
+
+    (ensure-user-config)
 
     (case command
       :pkg (do (require 'build.pkg)

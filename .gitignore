@@ -2,6 +2,8 @@
 /resources/public/js/compiled/**
 /resources/public/css/editor.css
 
+/docker/db-data/
+
 figwheel_server.log
 pom.xml
 *jar
