@@ -1,21 +1,16 @@
 [
- {:id              "admin@me"
-  :password        "password"
-  :auth            :admin
-  :system_messages false}
+ {:id       "admin@me"
+  :password "password"
+  :auth     :admin}
 
- {:id              "analyst@me"
-  :password        "password"
-  :auth            :intermediate
-  :system_messages false}
+ {:id       "analyst@me"
+  :password "password"
+  :auth     :intermediate}
 
- {:id              "user@me"
-  :password        "password"
-  :auth            :basic
-  :system_messages false}
+ {:id       "user@me"
+  :password "password"
+  :auth     :basic}
 
- {:id              "researcher@me"
-  :password        "password"
-  :auth            :unlimited
-  :system_messages false}
- ]
+ {:id       "researcher@me"
+  :password "password"
+  :auth     :unlimited}]
