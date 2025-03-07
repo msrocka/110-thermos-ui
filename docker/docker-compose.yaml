@@ -9,17 +9,14 @@ services:
       POSTGRES_PASSWORD: therm0s
       POSTGRES_DB: thermos
     ports:
-      - "5432:5432"
+      - "127.0.0.1:5432:5432"  # Bind to localhost only for security
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 5s
       timeout: 5s
       retries: 5
-    network_mode: host
-    #networks:
-    #  thermos-network:
-    #    aliases:
-    #      - localhost  # respond to 'localhost' within the network
+    networks:
+      thermos-network:
 
   thermos-app:
     image: thermos-app:latest
@@ -27,15 +24,11 @@ services:
     depends_on:
       thermos-db:
         condition: service_healthy
-    ports:
-      - "3000:8080"
     network_mode: host
-    #networks:
-    #  - thermos-network
 
-#networks:
-#  thermos-network:
-#    driver: bridge
+networks:
+  thermos-network:
+    driver: bridge
 
 volumes:
   db-data:
