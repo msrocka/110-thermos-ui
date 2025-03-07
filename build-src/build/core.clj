@@ -11,19 +11,21 @@
      :pkg  [debug]
      :cljs [debug]}))
 
-(defn- command-of [args]
+(defn- deconstruct-args [args]
+  "Deconstructs the args into a command and the rest of the args.
+  A possible -m flag is stripped out and the rest of the args are returned."
   (cond
-    (empty? args) :dev,
+    (empty? args) [:dev, nil],
     (and
       (> (count args) 1)
       (= (first args) "-m"))
-    (command-of (rest (rest args))),
-    :else (keyword (first args))))
+    (deconstruct-args (drop 2 args)),
+    :else [(keyword (first args)), (rest args)]))
 
 
 (defn -main [& args]
-  (let [command (command-of args)
-        opts (parse-opts args (opts-for command))
+  (let [[command rest-args] (deconstruct-args args)
+        opts (parse-opts rest-args (opts-for command))
         debug-optimizations (get-in opts [:options :debug])]
 
     (case command
@@ -33,7 +35,7 @@
 
       :cljs (do (require 'build.cljs)
                 ((resolve 'build.cljs/build-cljs)
-                 {:debug-optimizations debug-optimizations}))
+                 :debug-optimizations debug-optimizations))
 
       :cli-pkg (do (require 'build.pkg)
                    ((resolve 'build.pkg/build-cli-tool)))

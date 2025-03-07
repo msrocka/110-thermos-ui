@@ -47,111 +47,111 @@
     {:mvn/version "0.4.2",
      :exclusions  [com.google.javascript/closure-compiler]},
 
-    deraen/less4clj               {:mvn/version "0.7.0-SNAPSHOT"}},
+    deraen/less4clj               {:mvn/version "0.7.0-SNAPSHOT"}}}
 
-   :client
-   {:override-deps {org.clojure/clojurescript {:mvn/version "1.10.597"}},
-    :extra-deps
-    {org.clojure/data.csv       {:mvn/version "0.1.4"},
-     cljsjs/leaflet             {:mvn/version "1.2.0-0"},
-     sablono/sablono            {:mvn/version "0.8.5"},
-     com.cognitect/transit-cljs {:mvn/version "0.8.256"},
-     org.clojure/clojurescript  {:mvn/version "1.10.597"},
-     cljsjs/react-virtualized
-     {:mvn/version "9.11.1-1", :exclusions [cljsjs/react cljsjs/react-dom]},
-     re-com/re-com              {:mvn/version "2.4.0"},
-     cljsjs/rbush               {:mvn/version "2.0.1-0"},
-     reagent/reagent            {:mvn/version "0.8.1"},
-     cljsjs/leaflet-draw        {:mvn/version "0.4.12-0"}
+  :client
+  {:override-deps {org.clojure/clojurescript {:mvn/version "1.10.597"}},
+   :extra-deps
+   {org.clojure/data.csv       {:mvn/version "0.1.4"},
+    cljsjs/leaflet             {:mvn/version "1.2.0-0"},
+    sablono/sablono            {:mvn/version "0.8.5"},
+    com.cognitect/transit-cljs {:mvn/version "0.8.256"},
+    org.clojure/clojurescript  {:mvn/version "1.10.597"},
+    cljsjs/react-virtualized
+    {:mvn/version "9.11.1-1", :exclusions [cljsjs/react cljsjs/react-dom]},
+    re-com/re-com              {:mvn/version "2.4.0"},
+    cljsjs/rbush               {:mvn/version "2.0.1-0"},
+    reagent/reagent            {:mvn/version "0.8.1"},
+    cljsjs/leaflet-draw        {:mvn/version "0.4.12-0"}
 
-     rum/rum                    {:mvn/version "0.11.3"},
-     cljs-ajax/cljs-ajax        {:mvn/version "0.8.0", :exclusions [commons-logging/commons-logging]},
-     }},
+    rum/rum                    {:mvn/version "0.11.3"},
+    cljs-ajax/cljs-ajax        {:mvn/version "0.8.0", :exclusions [commons-logging/commons-logging]},
+    }}}
 
-   :heatmap-tool
-   {:extra-deps
-    {org.clojure/tools.cli     {:mvn/version "0.4.2"},
-     thermos/importer
-     {:git/url "https://github.com/cse-bristol/110-thermos-importer.git",
-      :sha     "d44bc1a19f69f114342aea18350d46228e5ea0e3"}
-     org.slf4j/slf4j-log4j12   {:mvn/version "1.7.10"},
-     log4j/log4j
-     {:mvn/version "1.2.17",
-      :exclusions  [javax.mail/mail javax.jms/jms com.sun.jmdk/jmxtools com.sun.jmx/jmxri]}
+ :heatmap-tool
+ {:extra-deps
+  {org.clojure/tools.cli     {:mvn/version "0.4.2"},
+   thermos/importer
+   {:git/url "https://github.com/cse-bristol/110-thermos-importer.git",
+    :sha     "d44bc1a19f69f114342aea18350d46228e5ea0e3"}
+   org.slf4j/slf4j-log4j12   {:mvn/version "1.7.10"},
+   log4j/log4j
+   {:mvn/version "1.2.17",
+    :exclusions  [javax.mail/mail javax.jms/jms com.sun.jmdk/jmxtools com.sun.jmx/jmxri]}
 
-     org.tobereplaced/nio.file {:mvn/version "0.4.0"},
-     mount/mount               {:mvn/version "0.1.15"},
-     }
-    }},
+   org.tobereplaced/nio.file {:mvn/version "0.4.0"},
+   mount/mount               {:mvn/version "0.1.15"},
+   }
+  },
 
-  :noder
-  {:extra-deps
-   {org.clojure/tools.cli     {:mvn/version "0.4.2"}
-    thermos/importer
-    {:git/url "https://github.com/cse-bristol/110-thermos-importer.git"
-     :sha     "d44bc1a19f69f114342aea18350d46228e5ea0e3"}
-    org.slf4j/slf4j-log4j12   {:mvn/version "1.7.10"}
-    log4j/log4j
-    {:mvn/version "1.2.17"
-     :exclusions  [javax.mail/mail javax.jms/jms com.sun.jmdk/jmxtools com.sun.jmx/jmxri]}
+ :noder
+ {:extra-deps
+  {org.clojure/tools.cli     {:mvn/version "0.4.2"}
+   thermos/importer
+   {:git/url "https://github.com/cse-bristol/110-thermos-importer.git"
+    :sha     "d44bc1a19f69f114342aea18350d46228e5ea0e3"}
+   org.slf4j/slf4j-log4j12   {:mvn/version "1.7.10"}
+   log4j/log4j
+   {:mvn/version "1.2.17"
+    :exclusions  [javax.mail/mail javax.jms/jms com.sun.jmdk/jmxtools com.sun.jmx/jmxri]}
 
-    org.tobereplaced/nio.file {:mvn/version "0.4.0"}
-    mount/mount               {:mvn/version "0.1.15"}}},
+   org.tobereplaced/nio.file {:mvn/version "0.4.0"}
+   mount/mount               {:mvn/version "0.1.15"}}},
 
-  :server
-  {:extra-deps
-   {org.clojure/data.json                   {:mvn/version "0.2.6"},
-    com.draines/postal                      {:mvn/version "2.0.2"},
-    org.clojure/tools.logging               {:mvn/version "0.4.1"},
-    metosin/muuntaja                        {:mvn/version "0.6.3"},
-    org.clojure/tools.cli                   {:mvn/version "0.4.2"},
-    compojure/compojure                     {:mvn/version "1.6.1"},
-    ring/ring-ssl                           {:mvn/version "0.3.0"},
-    funcool/clojure.jdbc                    {:mvn/version "0.9.0"},
-    org.apache.commons/commons-math3        {:mvn/version "3.6.1"},
-    ring/ring-defaults                      {:mvn/version "0.3.2"},
-    digest/digest                           {:mvn/version "1.4.6"},
-    thermos/models
-    {:git/url "https://github.com/cse-bristol/110-thermos-models.git",
-     :sha     "21cd41d499b41bec5f5c75f6da1e983be1108499"},
-    clucie/clucie                           {:mvn/version "0.4.2"},
-    honeysql/honeysql                       {:mvn/version "0.9.4"},
-    ring/ring-json                          {:mvn/version "0.4.0"},
-    aysylu/loom                             {:mvn/version "1.0.1"},
-    org.jgrapht/jgrapht-core                {:mvn/version "1.5.2"}
-    org.postgresql/postgresql               {:mvn/version "9.4.1212.jre7"},
-    thermos/importer
-    {:git/url "https://github.com/cse-bristol/110-thermos-importer.git",
-     :sha     "d44bc1a19f69f114342aea18350d46228e5ea0e3"},
-    clojure-term-colors/clojure-term-colors {:mvn/version "0.1.0"},
-    org.slf4j/slf4j-log4j12                 {:mvn/version "1.7.10"},
-    nilenso/honeysql-postgres               {:mvn/version "0.2.3"},
-    buddy/buddy-hashers                     {:mvn/version "1.3.0"},
-    enlive/enlive                           {:mvn/version "1.1.6"},
-    hiccup/hiccup                           {:mvn/version "2.0.0-alpha1"},
-    org.clojure/data.csv                    {:mvn/version "0.1.4"},
-    com.cognitect/transit-clj               {:mvn/version "0.8.313"},
-    org.clojure/java.jdbc                   {:mvn/version "0.7.5"},
-    resauce/resauce                         {:mvn/version "0.1.0"},
-    org.apache.lucene/lucene-highlighter    {:mvn/version "7.5.0"},
-    hikari-cp/hikari-cp                     {:mvn/version "1.2.4"},
-    javax.servlet/servlet-api               {:mvn/version "2.5", :scope "test"},
-    mount/mount                             {:mvn/version "0.1.15"},
-    bidi/bidi                               {:mvn/version "2.1.6"},
-    ring-logger/ring-logger                 {:mvn/version "1.0.0"},
-    log4j/log4j
-    {:mvn/version "1.2.17",
-     :exclusions  [javax.mail/mail javax.jms/jms com.sun.jmdk/jmxtools com.sun.jmx/jmxri]},
-    org.tobereplaced/nio.file               {:mvn/version "0.4.0"},
-    ring/ring-core                          {:mvn/version "1.7.1"},
-    http-kit/http-kit                       {:mvn/version "2.2.0"}
+ :server
+ {:extra-deps
+  {org.clojure/data.json                   {:mvn/version "0.2.6"},
+   com.draines/postal                      {:mvn/version "2.0.2"},
+   org.clojure/tools.logging               {:mvn/version "0.4.1"},
+   metosin/muuntaja                        {:mvn/version "0.6.3"},
+   org.clojure/tools.cli                   {:mvn/version "0.4.2"},
+   compojure/compojure                     {:mvn/version "1.6.1"},
+   ring/ring-ssl                           {:mvn/version "0.3.0"},
+   funcool/clojure.jdbc                    {:mvn/version "0.9.0"},
+   org.apache.commons/commons-math3        {:mvn/version "3.6.1"},
+   ring/ring-defaults                      {:mvn/version "0.3.2"},
+   digest/digest                           {:mvn/version "1.4.6"},
+   thermos/models
+   {:git/url "https://github.com/cse-bristol/110-thermos-models.git",
+    :sha     "21cd41d499b41bec5f5c75f6da1e983be1108499"},
+   clucie/clucie                           {:mvn/version "0.4.2"},
+   honeysql/honeysql                       {:mvn/version "0.9.4"},
+   ring/ring-json                          {:mvn/version "0.4.0"},
+   aysylu/loom                             {:mvn/version "1.0.1"},
+   org.jgrapht/jgrapht-core                {:mvn/version "1.5.2"}
+   org.postgresql/postgresql               {:mvn/version "9.4.1212.jre7"},
+   thermos/importer
+   {:git/url "https://github.com/cse-bristol/110-thermos-importer.git",
+    :sha     "d44bc1a19f69f114342aea18350d46228e5ea0e3"},
+   clojure-term-colors/clojure-term-colors {:mvn/version "0.1.0"},
+   org.slf4j/slf4j-log4j12                 {:mvn/version "1.7.10"},
+   nilenso/honeysql-postgres               {:mvn/version "0.2.3"},
+   buddy/buddy-hashers                     {:mvn/version "1.3.0"},
+   enlive/enlive                           {:mvn/version "1.1.6"},
+   hiccup/hiccup                           {:mvn/version "2.0.0-alpha1"},
+   org.clojure/data.csv                    {:mvn/version "0.1.4"},
+   com.cognitect/transit-clj               {:mvn/version "0.8.313"},
+   org.clojure/java.jdbc                   {:mvn/version "0.7.5"},
+   resauce/resauce                         {:mvn/version "0.1.0"},
+   org.apache.lucene/lucene-highlighter    {:mvn/version "7.5.0"},
+   hikari-cp/hikari-cp                     {:mvn/version "1.2.4"},
+   javax.servlet/servlet-api               {:mvn/version "2.5", :scope "test"},
+   mount/mount                             {:mvn/version "0.1.15"},
+   bidi/bidi                               {:mvn/version "2.1.6"},
+   ring-logger/ring-logger                 {:mvn/version "1.0.0"},
+   log4j/log4j
+   {:mvn/version "1.2.17",
+    :exclusions  [javax.mail/mail javax.jms/jms com.sun.jmdk/jmxtools com.sun.jmx/jmxri]},
+   org.tobereplaced/nio.file               {:mvn/version "0.4.0"},
+   ring/ring-core                          {:mvn/version "1.7.1"},
+   http-kit/http-kit                       {:mvn/version "2.2.0"}
 
-    dk.ative/docjure                        {:mvn/version "1.14.0"}
+   dk.ative/docjure                        {:mvn/version "1.14.0"}
 
-    rum/rum                                 {:mvn/version "0.11.3"},
-    cljs-ajax/cljs-ajax                     {:mvn/version "0.8.0", :exclusions [commons-logging/commons-logging]},
-    metosin/malli                           {:mvn/version "0.3.0"},
-    }}},
+   rum/rum                                 {:mvn/version "0.11.3"},
+   cljs-ajax/cljs-ajax                     {:mvn/version "0.8.0", :exclusions [commons-logging/commons-logging]},
+   metosin/malli                           {:mvn/version "0.3.0"},
+   }},
 
  :deps
  {org.clojure/clojure      {:mvn/version "1.10.1"},
