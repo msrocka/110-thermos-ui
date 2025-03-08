@@ -17,9 +17,9 @@ docker run --rm -d -p 5432:5432 --name thermos-db thermos-db
 
 # or interactively
 docker run --rm -it -p 5432:5432 --name thermos-db thermos-db
-````
+```
 
-Running database container is also useful when developing the application.
+A running database container is also useful when developing the application.
 
 For the application image, use the `app.Dockerfile`. **Make sure** to run the 
 application build first and copy it to the `docker` folder, before building the
@@ -29,6 +29,7 @@ image:
 
 # first build the application; this will produce the target/thermos.jar file
 clojure -M:client:server:dev pkg
+rm docker/thermos.jar
 cp target/thermos.jar docker/
 
 cd docker
