@@ -75,8 +75,8 @@
   {:extra-deps
    {org.clojure/tools.cli     {:mvn/version "0.4.2"},
     thermos/importer
-    {:git/url "https://github.com/cse-bristol/110-thermos-importer.git",
-     :sha     "d44bc1a19f69f114342aea18350d46228e5ea0e3"}
+    {:git/url "https://github.com/msrocka/110-thermos-importer.git",
+     :sha     "f899e3b0192ea48067c01d49751319187cee37d1"}
     org.slf4j/slf4j-log4j12   {:mvn/version "1.7.10"},
     log4j/log4j
     {:mvn/version "1.2.17",
@@ -90,8 +90,8 @@
   {:extra-deps
    {org.clojure/tools.cli     {:mvn/version "0.4.2"},
     thermos/importer
-    {:git/url "https://github.com/cse-bristol/110-thermos-importer.git"
-     :sha     "d44bc1a19f69f114342aea18350d46228e5ea0e3"},
+    {:git/url "https://github.com/msrocka/110-thermos-importer.git"
+     :sha     "f899e3b0192ea48067c01d49751319187cee37d1"},
     org.slf4j/slf4j-log4j12   {:mvn/version "1.7.10"},
 
     log4j/log4j
@@ -125,8 +125,8 @@
     org.jgrapht/jgrapht-core                {:mvn/version "1.5.2"}
     org.postgresql/postgresql               {:mvn/version "42.7.5"},
     thermos/importer
-    {:git/url "https://github.com/cse-bristol/110-thermos-importer.git",
-     :sha     "d44bc1a19f69f114342aea18350d46228e5ea0e3"},
+    {:git/url "https://github.com/msrocka/110-thermos-importer.git",
+     :sha     "f899e3b0192ea48067c01d49751319187cee37d1"},
     clojure-term-colors/clojure-term-colors {:mvn/version "0.1.0"},
     org.slf4j/slf4j-log4j12                 {:mvn/version "1.7.10"},
     nilenso/honeysql-postgres               {:mvn/version "0.2.3"},

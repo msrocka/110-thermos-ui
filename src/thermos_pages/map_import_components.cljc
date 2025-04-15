@@ -303,7 +303,8 @@
                  (ext ".json")
                  (ext ".geojson")
                  (ext ".gpkg")
-                 (ext ".geopackage")))
+                 (ext ".geopackage")
+                 (ext ".gml")))
         (swap! status
                assoc
                :state :invalid
@@ -514,7 +515,8 @@
            [:b ".shp"] ", " [:b ".dbf"] ", "
            [:b ".shx"] ", " [:b ".prj"] " and "
            [:b ".cpg"] " files!"]
-          [:li [:a {:href "https://www.geopackage.org/" :target "_blank"} "GeoPackage"]]]
+          [:li [:a {:href "https://www.geopackage.org/" :target "_blank"} "GeoPackage"]]
+          [:li [:a {:href "https://www.ogc.org/publications/standard/citygml/" :target "_blank"} "CityGML"]]]
          
          (file-uploader {} *data-files)
 
