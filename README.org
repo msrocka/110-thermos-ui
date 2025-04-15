@@ -1,6 +1,8 @@
-#+TITLE: Thermos UI
+#+TITLE: Thermos UI, an experimental fork
 
-See LICENSE for licensing information.
+This is an experimental fork of the [[https://github.com/cse-bristol/110-thermos-ui][Thermos UI]] project that we use in the =BioHeating= project. Please visit [[https://github.com/cse-bristol/110-thermos-ui][this repository]] for the original sources. Also, see LICENSE for licensing information.
+
+
 
 THERMOS as a whole is split into a few parts, which see:
 
