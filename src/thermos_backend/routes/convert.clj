@@ -10,7 +10,8 @@
             [thermos-util.converter :as geojson-converter]
             [cheshire.core :as json]
             [thermos-backend.db :as db]
-            ))
+            )
+  (:import (com.greendelta.bh.io.sophena SophenaExport)))
 
 (def xl-content-type "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
 
@@ -55,14 +56,13 @@
       (cache-control/no-store)))
 
 (defn problem-to-sophena [{{state :state path :path} :body-params}]
-  (let [bytes (.getBytes (pr-str state))
-        segments (clojure.string/split path #"/")
+  (let [segments (clojure.string/split path #"/")
         net-id (Integer/parseInt (last segments))]
     (db/with-connection
-      [con]
-      (do
-        (println net-id)
-        (-> (response/response (java.io.ByteArrayInputStream. bytes))
+      [conn]
+      (let [^java.sql.Connection raw-conn (jdbc.proto/connection conn)]
+        (println raw-conn)
+        (-> (response/response (SophenaExport/stream raw-conn net-id))
             (response/content-type "application/octet-stream")
             (response/header "Content-Disposition" "attachment; filename=\"example.sophena\"")
             (cache-control/no-store))))))
