@@ -287,9 +287,10 @@
 
             [:li [:button.button--link-style
                   {:on-click
-                   #(let [state (document/keep-interesting @state/state)]
+                   #(let [state (document/keep-interesting @state/state)
+                          path (.-pathname js/window.location)]
                       (POST "/convert/sophena"
-                            {:params {:state state}
+                            {:params {:state state :path path}
                              :response-format
                              {:type :blob :read -body}
                              :handler
