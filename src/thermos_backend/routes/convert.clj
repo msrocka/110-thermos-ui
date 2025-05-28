@@ -53,6 +53,14 @@
       (response/content-type "application/json")
       (cache-control/no-store)))
 
+(defn problem-to-sophena [{{state :state} :body-params}]
+  (let [bytes (.getBytes (pr-str state))]
+    (println state)
+    (-> (response/response (java.io.ByteArrayInputStream. bytes))
+        (response/content-type "application/octet-stream")
+        (response/header "Content-Disposition" "attachment; filename=\"example.sophena\"")
+        (cache-control/no-store))))
+
 (def converter-routes
   "Routes for converting a problem to other types.
 
@@ -63,6 +71,7 @@
   "
   ["/convert"
    [["/excel" #'problem-to-excel]
+    ["/sophena" #'problem-to-sophena]
     ["/json" problem-to-json]
     ["/json-2" problem-to-json-2]]])
 

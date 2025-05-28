@@ -3,7 +3,7 @@
  :pg-password "therm0s"
  :pg-db "thermos"
  :force-migrate false
- 
+
  :web-server-port 3000
  :web-server-max-age 600
  :web-server-max-body 800
@@ -24,7 +24,7 @@
 
  :solver-count 10
  :importer-count 4
- 
+
  :import-directory "import-work"
  :lidar-directory "lidar"
  :error-dumps "error-dumps"
