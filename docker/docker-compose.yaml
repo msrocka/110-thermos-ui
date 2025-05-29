@@ -8,13 +8,14 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: therm0s
       POSTGRES_DB: thermos
+      PGDATA: /var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 5s
       timeout: 5s
       retries: 5
     network_mode: host
-  
+
   thermos-app:
     image: thermos-app:latest
     container_name: thermos-app
